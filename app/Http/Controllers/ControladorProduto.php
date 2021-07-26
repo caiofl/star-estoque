@@ -38,6 +38,7 @@ class ControladorProduto extends Controller
     {
         $prod = new Produto();
         $prod->modelo       = $request->input('modelo');
+        $prod->fabricante   = $request->input('fabricante');
         $prod->cor          = $request->input('cor');
         $prod->ml           = $request->input('ml');
         $prod->preco_compra = $request->input('valorCompra');
@@ -87,6 +88,7 @@ class ControladorProduto extends Controller
         if(isset($prods)) { 
             $prods->modelo       = $request->input('modelo');
             $prods->cor          = $request->input('cor');
+            $prods->fabricante   = $request->input('fabricante');   
             $prods->ml           = $request->input('ml');
             $prods->preco_compra = $request->input('valorCompra');
             $prods->preco_venda  = $request->input('valorVenda');

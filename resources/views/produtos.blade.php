@@ -13,6 +13,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Modelo</th>
+                        <th>Fabricante</th>
                         <th>Cor</th>
                         <th>Ml</th>
                         <th>Quantidade</th>
@@ -24,6 +25,7 @@
                         <tr>
                             <td> {{$prod->id}}          </td>
                             <td> {{$prod->modelo}}      </td>
+                            <td> {{$prod->fabricante}}  </td>
                             <td> {{$prod->cor}}         </td>
                             <td> {{$prod->ml}}          </td>
                             <td> {{$prod->quantidade}}  </td>

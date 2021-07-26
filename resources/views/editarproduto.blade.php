@@ -3,82 +3,57 @@
 @section('body')
 
 <head>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script type="text/javascript" src="{{ asset('js/scripts.js')}}"> </script>
 </head>
 
 <form action="/produtos/{{$prods->id}}" method="POST">
 @csrf
-<fieldset>
 <div class="panel panel-primary  form-horizontal">
-    <h1 style="text-align:center"> Cadastro de Produtos</h1>
-        
-<div class="panel-body">
-    <div class="form-group">
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="modelo">Modelo:</label>  
-  <div class="col-md-9">
-  <input id="modelo" name="modelo"  value="{{$prods->modelo}}" class="form-control input-md" required="" type="text">
+  <h1 style="text-align:center"> Editar Produtos</h1>
+  <br>
+    
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="modelo">Modelo:</label>
+      <input type="text" class="form-control" id="modelo" name="modelo" value="{{$prods->modelo}}" required=""  minlength="4">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="fabricante">Fabricante:</label>
+      <input type="text" class="form-control" id="fabricante" name="fabricante" value="{{$prods->fabricante}}" required="" minlength="4">
+    </div>
   </div>
-</div>
-
-<!-- Prepended text-->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="cor">cor:</label>
-  <div class="col-md-2">
-    <div class="input-group">
-      <input id="cor" name="cor" value="{{$prods->cor}}" class="form-control" required="" type="text" maxlength="13">
+    <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="cor">Cor:</label>
+      <input type="text" class="form-control" id="cor" name="cor" value="{{$prods->cor}}" required=""  minlength="4">
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="ml">ML:</label>
+      <input type="text" class="form-control" id="ml" name="ml" value="{{$prods->ml}}" required="" minlength="4">
+    </div>
+     <div class="col-md-4 mb-3">
+      <label for="quantidade">Quantidade:</label>
+      <input type="number" class="form-control" id="quantidade" name="quantidade" value="{{$prods->quantidade}}" required=""  minlength="4">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-2 mb-3">
+      <label for="valorCompra">Valor compra:</label>
+      <input type="text" class="form-control" id="valorCompra" name="valorCompra" value="{{$prods->preco_compra}}" placeholder="somente numero" required="">
+    </div>
+    <div class="col-md-2 mb-3">
+      <label for="valorVenda">Valor venda:</label>
+      <input type="text" class="form-control" id="valorVenda" name="valorVenda" value="{{$prods->preco_venda}}"  placeholder="somente numero" required="">
     </div>
   </div>
   
-    <label class="col-md-2 control-label" for="ml">ML:</label>
-    <div class="col-md-2">
-      <div class="input-group">
-        <input id="ml" name="ml" value="{{$prods->ml}}" class="form-control" required="" type="text" maxlength="13">
-      </div>
-    </div>
-  
-    <label class="col-md-1 control-label" for="quantidade">Quantidade:</label>
-     <div class="col-md-2">
-    <div class="input-group">
-      <input id="quantidade" name="quantidade" value="{{$prods->quantidade}}" class="form-control" required="" type="number" maxlength="13">
-    </div>
-  </div>
- </div> 
+  <button type="Submit" class="btn btn-success btn-sm">Editar</button>
+  <a href="/produtos" class="btn btn-secondary btn-sm">Voltar</a>
 
-<div class="form-group">
-  <label class="col-md-2 control-label" for="valorCompra">Valor compra:</label>
-  <div class="col-md-2">
-    <div class="input-group">
-      <input id="valorCompra" name="valorCompra" value="{{$prods->preco_compra}}" class="form-control" required="" type="text">
-    </div>
-  </div>
-  
-    <label class="col-md-2 control-label" for="valorVenda">Valor venda:</label>
-     <div class="col-md-2">
-    <div class="input-group">
-      <input id="valorVenda" name="valorVenda" value="{{$prods->preco_venda}}" class="form-control" required="" type="text">
-    </div>
-  </div>
-</div> 
-
-<!-- Button (Double) -->
-<div class="form-group">
-  <label class="col-md-2 control-label" for="Cadastrar"></label>
-  <div class="col-md-8">
-    <button id="Cadastrar" name="Cadastrar" class="btn btn-success btn-sm" type="Submit">Editar</button>
-    <a href="/produtos" class="btn btn-secondary btn-sm">Voltar</a>
-  </div>
-</div>
-
-</div>
-</div>
-
-
-</fieldset>
 </form>
 
 @endsection

@@ -1,10 +1,9 @@
-function limpa_formulario_cep() {
+function limpa_formulário_cep() {
     //Limpa valores do formulário de cep.
     document.getElementById('rua').value=("");
     document.getElementById('bairro').value=("");
     document.getElementById('cidade').value=("");
     document.getElementById('estado').value=("");
-    
 }
 
 function meu_callback(conteudo) {
@@ -17,9 +16,8 @@ if (!("erro" in conteudo)) {
 } //end if.
 else {
     //CEP não Encontrado.
-    limpa_formulario_cep();
+    limpa_formulário_cep();
     alert("CEP não encontrado.");
-    document.getElementById('cep').value=("");
 }
 }
 
@@ -29,7 +27,7 @@ function pesquisacep(valor) {
 var cep = valor.replace(/\D/g, '');
 
 //Verifica se campo cep possui valor informado.
-if (cep !== "") {
+if (cep != "") {
 
     //Expressão regular para validar o CEP.
     var validacep = /^[0-9]{8}$/;
@@ -47,7 +45,7 @@ if (cep !== "") {
         var script = document.createElement('script');
 
         //Sincroniza com o callback.
-        script.src = '//viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+        script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
 
         //Insere script no documento e carrega o conteúdo.
         document.body.appendChild(script);
@@ -55,12 +53,12 @@ if (cep !== "") {
     } //end if.
     else {
         //cep é inválido.
-        limpa_formulario_cep();
+        limpa_formulário_cep();
         alert("Formato de CEP inválido.");
     }
 } //end if.
 else {
     //cep sem valor, limpa formulário.
-    limpa_formulario_cep();
+    limpa_formulário_cep();
 }
-}
+};
