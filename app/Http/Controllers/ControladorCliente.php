@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\cliente;
 
+
 class ControladorCliente extends Controller
 {
     /**
@@ -12,10 +13,17 @@ class ControladorCliente extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function indexView()
+    {
+        return view('clientes');
+    }
+
+
     public function index()
     {
-        $clients = Cliente::all();  //--Listar--}}
-        return view('clientes', compact('clients'));
+        $clients = Cliente::all();
+        return $clients->toJson();
     }
 
     /**
@@ -25,7 +33,7 @@ class ControladorCliente extends Controller
      */
     public function create()
     {
-        return view('novocliente');
+        //
     }
 
     /**
@@ -38,18 +46,18 @@ class ControladorCliente extends Controller
     {
         $cliente = new Cliente();
         
-        $cliente->nome      = $request->input('nomeCliente');
+        $cliente->nome      = $request->input('nome');
         $cliente->email     = $request->input('email');
-        $cliente->tel       = $request->input('telefone');
-        $cliente->endereco  = $request->input('rua');
+        $cliente->tel       = $request->input('tel');
+        $cliente->cep       = $request->input('cep');
+        $cliente->endereco  = $request->input('endereco');
+        $cliente->numero    = $request->input('numero');
         $cliente->bairro    = $request->input('bairro');
         $cliente->cidade    = $request->input('cidade');
-        $cliente->uf        = $request->input('estado');
-        $cliente->cep       = $request->input('cep');
-        $cliente->numero    = $request->input('n');
+        $cliente->uf        = $request->input('uf');
 
         $cliente->save();
-        return redirect('/clientes');
+        return json_encode($cliente);
     }
 
     /**
@@ -60,7 +68,11 @@ class ControladorCliente extends Controller
      */
     public function show($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        if (isset($cliente)) {
+            return json_encode($cliente);
+        }
+        return response('Produto não encontrado', 404);
     }
 
     /**
@@ -71,11 +83,7 @@ class ControladorCliente extends Controller
      */
     public function edit($id)
     {
-        $clients = cliente::find($id);
-        if(isset($clients)){
-            return view('editarcliente', compact('clients'));
-        }
-        return redirect('/clientes');
+      //
     }
 
     /**
@@ -87,20 +95,22 @@ class ControladorCliente extends Controller
      */
     public function update(Request $request, $id)
     {
-        $clients = cliente::find($id);
-        if(isset($clients)){
-            $clients->nome      = $request->input('nomeCliente');
-            $clients->email     = $request->input('email');
-            $clients->tel       = $request->input('telefone');
-            $clients->endereco  = $request->input('rua');
-            $clients->bairro    = $request->input('bairro');
-            $clients->cidade    = $request->input('cidade');
-            $clients->uf        = $request->input('estado');
-            $clients->cep       = $request->input('cep');
-            $clients->numero    = $request->input('n');
-            $clients->save();
-        }
-        return redirect('/clientes');
+        $cliente = Cliente::find($id);
+            if (isset($cliente)) {
+                $cliente->nome      = $request->input('nome');
+                $cliente->email     = $request->input('email');
+                $cliente->tel       = $request->input('tel');
+                $cliente->cep       = $request->input('cep');
+                $cliente->endereco  = $request->input('endereco');
+                $cliente->numero    = $request->input('numero');
+                $cliente->bairro    = $request->input('bairro');
+                $cliente->cidade    = $request->input('cidade');
+                $cliente->uf        = $request->input('uf');
+        
+                $cliente->save();
+                return json_encode($cliente);
+            }
+            return response('Produto não encontrado', 404);
     }
 
     /**
@@ -111,10 +121,14 @@ class ControladorCliente extends Controller
      */
     public function destroy($id)
     {
-       $clients = Cliente::find($id);
-       if (isset($clients)) {
-           $clients->delete();
-       }
-       return redirect('/clientes');
+        $cliente = Cliente::find($id);
+        if (isset($cliente)) {
+            $cliente->delete();
+        }
+    }
+
+    public function indexJson() {
+        $clients = Cliente::all();
+        return json_encode($clients);
     }
 }

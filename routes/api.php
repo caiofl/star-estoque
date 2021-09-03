@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/clientes', 'App\Http\Controllers\ControladorCliente@indexJson');
+
+Route::resource('/clientes', 'App\Http\Controllers\ControladorCliente');

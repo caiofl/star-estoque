@@ -33,11 +33,11 @@
     </div>
     <div class="col-md-4 mb-3">
       <label for="ml">ML:</label>
-      <input type="text" class="form-control" id="ml" name="ml"  required="" minlength="4">
+      <input type="text" class="form-control" id="ml" name="ml"  required="">
     </div>
      <div class="col-md-4 mb-3">
       <label for="quantidade">Quantidade:</label>
-      <input type="number" class="form-control" id="quantidade" name="quantidade" required=""  minlength="4">
+      <input type="number" class="form-control" id="quantidade" name="quantidade" required="">
     </div>
   </div>
   <div class="form-row">

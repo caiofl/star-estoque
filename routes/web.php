@@ -20,12 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/clientes', 'App\Http\Controllers\ControladorCliente@index');
-Route::get('/clientes/novo', 'App\Http\Controllers\ControladorCliente@create');
-Route::post('/clientes', 'App\Http\Controllers\ControladorCliente@store');
-Route::get('/clientes/apagar/{id}', 'App\Http\Controllers\ControladorCliente@destroy');
-Route::get('/clientes/editar/{id}', 'App\Http\Controllers\ControladorCliente@edit');
-Route::post('/clientes/{id}', 'App\Http\Controllers\ControladorCliente@update');
+Route::get('/clientes', 'App\Http\Controllers\ControladorCliente@indexView');
 
 Route::get('/produtos', 'App\Http\Controllers\ControladorProduto@index');
 Route::get('/produtos/novo', 'App\Http\Controllers\ControladorProduto@create');
